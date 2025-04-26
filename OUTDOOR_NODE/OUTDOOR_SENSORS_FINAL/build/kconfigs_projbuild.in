@@ -1,0 +1,8 @@
+source "C:/Users/beiru/esp/v5.4.1/esp-idf/components/bootloader/Kconfig.projbuild"
+source "C:/Users/beiru/esp/v5.4.1/esp-idf/components/esp_app_format/Kconfig.projbuild"
+source "C:/Users/beiru/esp/v5.4.1/esp-idf/components/esp_rom/Kconfig.projbuild"
+source "C:/Users/beiru/esp/v5.4.1/esp-idf/components/esptool_py/Kconfig.projbuild"
+source "C:/Users/beiru/esp/v5.4.1/esp-idf/components/partition_table/Kconfig.projbuild"
+source "C:/Users/beiru/esp-rainmaker/components/esp_rainmaker/Kconfig.projbuild"
+source "C:/Users/beiru/esp-rainmaker/examples/common/app_network/Kconfig.projbuild"
+source "C:/Users/beiru/OneDrive/Desktop/IOT/ESP32/2DProj/OUTDOOR_SENSORS_FINAL/components/arduino/Kconfig.projbuild"

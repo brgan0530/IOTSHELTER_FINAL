@@ -1,0 +1,290 @@
+dependencies:
+  chmorgan/esp-libhelix-mp3:
+    component_hash: cbb76089dc2c5749f7b470e2e70aedc44c9da519e04eb9a67d4c7ec275229e53
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=4.1.0'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.0.3
+  espressif/cbor:
+    component_hash: 440f4ee4504841cc9b4f3a8ef755776a612ac9dace355514c68b999868f990ff
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=4.3'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 0.6.0~1
+  espressif/esp-dsp:
+    component_hash: fa7fe74305df6da25867437ebcd4213e047cbfc0556cf92067ab657fce537c6e
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=4.2'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.5.2
+  espressif/esp-modbus:
+    component_hash: e42ebfdfc9d8e46821a915b4c1a5c6465c44dbd4e1bca10531e26f4adc7acc42
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=4.3'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.0.17
+  espressif/esp-serial-flasher:
+    component_hash: dcc42a16712a1a636509cf0bf90e14032d7f2141784b533613b267b6aa318d52
+    dependencies: []
+    source:
+      registry_url: https://components.espressif.com
+      type: service
+    version: 0.0.11
+  espressif/esp-zboss-lib:
+    component_hash: 2a2256a8d20e5ade59a8e084760c84faa87dc9332523afcb6e245a744420839a
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=5.0'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.6.3
+  espressif/esp-zigbee-lib:
+    component_hash: 73112d38839c7460bd713f9e3a5b2baeab351ee01a4b9091c7df8b50ce524947
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=5.0'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.6.3
+  espressif/esp_diag_data_store:
+    dependencies:
+    - name: idf
+      version: '>=4.1'
+    source:
+      path: C:\Users\beiru\esp-rainmaker\components\esp-insights\components\esp_diag_data_store
+      type: local
+    version: 1.0.2
+  espressif/esp_diagnostics:
+    dependencies:
+    - name: idf
+      version: '>=4.1'
+    - name: espressif/rmaker_common
+      version: ~1.4.0
+    source:
+      path: C:\Users\beiru\esp-rainmaker\components\esp-insights\components\esp_diagnostics
+      type: local
+    version: 1.2.1
+  espressif/esp_insights:
+    dependencies:
+    - name: idf
+      version: '>=4.1'
+    - name: espressif/rmaker_common
+      version: ~1.4.0
+    - name: espressif/esp_diag_data_store
+      override_path: ../esp_diag_data_store/
+      version: 1.0.2
+    - name: espressif/esp_diagnostics
+      override_path: ../esp_diagnostics/
+      version: 1.2.1
+    - name: espressif/cbor
+      rules:
+      - if: idf_version >=5.0
+      version: ~0.6
+    source:
+      path: C:\Users\beiru\esp-rainmaker\components\esp-insights\components\esp_insights
+      type: local
+    version: 1.2.4
+  espressif/esp_modem:
+    component_hash: b541c3f5765d3ba062c0d004b9ca6da6d0af908293421c2dbe046c537fb2a011
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=4.1'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.4.0
+  espressif/esp_rainmaker:
+    dependencies:
+    - name: espressif/mdns
+      rules:
+      - if: idf_version >=5.0
+      version: ^1.2.0
+    - name: espressif/esp_secure_cert_mgr
+      rules:
+      - if: idf_version >=4.3
+      version: ^2.2.1
+    - name: espressif/rmaker_common
+      override_path: ../rmaker_common/
+      version: ~1.4.6
+    - name: espressif/json_parser
+      override_path: ../json_parser
+      version: ~1.0.3
+    - name: espressif/json_generator
+      override_path: ../json_generator
+      version: ~1.1.1
+    - name: espressif/esp_schedule
+      override_path: ../esp_schedule/
+      version: ~1.2.0
+    - name: espressif/network_provisioning
+      rules:
+      - if: idf_version >= 5.1
+      version: ~1.0.0
+    - name: espressif/esp_rcp_update
+      rules:
+      - if: idf_version >= 5.1
+      version: ~1.2.0
+    source:
+      path: C:\Users\beiru\esp-rainmaker\components\esp_rainmaker
+      type: local
+    version: 1.5.2
+  espressif/esp_rcp_update:
+    component_hash: c10afbd54a17f27eed880e61262b161656e6d36ad63376c307f9273e99d0abcd
+    dependencies:
+    - name: espressif/esp-serial-flasher
+      registry_url: https://components.espressif.com
+      require: private
+      version: ~0.0.0
+    - name: idf
+      require: private
+      version: '>=5.0'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.2.0
+  espressif/esp_schedule:
+    dependencies:
+    - name: espressif/rmaker_common
+      override_path: ../rmaker_common/
+      version: ~1.4.2
+    source:
+      path: C:\Users\beiru\esp-rainmaker\components\esp_schedule
+      type: local
+    version: 1.2.0
+  espressif/esp_secure_cert_mgr:
+    component_hash: 5d9175b416f751ba6a7cb35bdf092f0af85658ce06c4a592c7c541d8017ebeb9
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=4.3'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 2.5.0
+  espressif/json_generator:
+    dependencies: []
+    source:
+      path: C:\Users\beiru\esp-rainmaker\components\json_generator
+      type: local
+    version: 1.1.1
+  espressif/json_parser:
+    dependencies:
+    - name: espressif/jsmn
+      rules:
+      - if: idf_version >=5.0
+      version: ~1.1
+    source:
+      path: C:\Users\beiru\esp-rainmaker\components\json_parser
+      type: local
+    version: 1.0.3
+  espressif/libsodium:
+    component_hash: 25b968723c584a2742ca36cebe5a7ef049c6767e059f7b1e1eec69946019025d
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=4.2'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.0.20~2
+  espressif/mdns:
+    component_hash: 3ec0af5f6bce310512e90f482388d21cc7c0e99668172d2f895356165fc6f7c5
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=5.0'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.8.2
+  espressif/network_provisioning:
+    component_hash: ef2e10182fd1861e68b821491916327c25416ca7ae70e5a6e43313dbc71fe993
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=5.1'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.0.2
+  espressif/qrcode:
+    component_hash: 3b493771bc5d6ad30cbf87c25bf784aada8a08c941504355b55d6b75518ed7bc
+    dependencies: []
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 0.1.0~2
+  espressif/rmaker_common:
+    dependencies: []
+    source:
+      path: C:\Users\beiru\esp-rainmaker\components\rmaker_common
+      type: local
+    version: 1.4.6
+  idf:
+    source:
+      type: idf
+    version: 5.4.1
+  joltwallet/littlefs:
+    component_hash: 34b8c56a14f10b440845fe972ce34ef41d1d205bcb139b3dfc58983a10abf59b
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=5.0'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.19.1
+  jsmn:
+    dependencies: []
+    source:
+      path: C:\Users\beiru\esp-rainmaker\components\jsmn
+      type: local
+    version: 1.1.0
+direct_dependencies:
+- chmorgan/esp-libhelix-mp3
+- espressif/cbor
+- espressif/esp-dsp
+- espressif/esp-modbus
+- espressif/esp-zboss-lib
+- espressif/esp-zigbee-lib
+- espressif/esp_diag_data_store
+- espressif/esp_diagnostics
+- espressif/esp_insights
+- espressif/esp_modem
+- espressif/esp_rainmaker
+- espressif/esp_rcp_update
+- espressif/esp_schedule
+- espressif/esp_secure_cert_mgr
+- espressif/jsmn
+- espressif/json_generator
+- espressif/json_parser
+- espressif/libsodium
+- espressif/mdns
+- espressif/network_provisioning
+- espressif/qrcode
+- espressif/rmaker_common
+- idf
+- joltwallet/littlefs
+manifest_hash: 42ac39e2a3474ef433ff526ce84a360eb74c1ecfef4b8780074b8555fb6e1ce2
+target: esp32c6
+version: 2.0.0
