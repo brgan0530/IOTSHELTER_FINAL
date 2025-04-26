@@ -20,6 +20,7 @@ This indoor ESP node connects to a BME680 sensor to retrieve pressure values and
 5) You can open http uri link to view sensor data transmitted (both gas and pressure are transmitted) 
 
 Extra: 
+Note that our MQ135 code does not include rzero code to calibrate sensor
 Below is the file directory of remaining files in the project folder. Note to set your RMAKER Path to the path where rainmaker was gitcloned
 
 ```
