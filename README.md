@@ -6,10 +6,10 @@ Credits: We used Unclerus, ESPRESSIF'S REGISTRY COMPONENTS and rainmaker example
 
 # **IOT GAS SHELTER MONITORING SYSTEM**
 
-# Outdoor Sensor Integrated Code 
+# Outdoor Sensor Node
 This outdoor ESP node connects to a BME680 sensor to retrieve pressure values and MQ135. It is currently designed to run Arduino cpp framework within ESPIDF. Sensor readings are uploaded to rainmaker periodically. On top of that to talk to the indoor ESP node, sensor data is being transmitted over using http get method. Outdoor is the http server. Note to connect all ESPs and website to same wifi to view http values.
 
-# Indoor Sensor Integrated Code 
+# Indoor Sensor Node
 This indoor ESP node connects to a BME680 sensor to retrieve pressure values and LCD to display gas level sensor data and status from the outdoor node. This indoor ESP node is a HTTP client and it receives sensor data from the outdoor ESP node. The LCD panel component library is modified from Espressif's component registry to be compatible with Unclerus BME sensor library. Espressif's PCF5874 lcd i2c library cannot be directly used as it uses ESP's own i2c library while uncle rus uses its own i2c library. 
 
 ## How to use example
