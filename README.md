@@ -1,5 +1,7 @@
 | Supported Targets | ESP32-C6-DevKitC-1| 
 
+Credits: We used Unclerus, ESPRESSIF'S REGISTRY COMPONENTS and rainmaker example files to create our codes
+
 # **IOT GAS SHELTER MONITORING SYSTEM**
 
 # Outdoor Sensor Integrated Code 
