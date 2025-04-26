@@ -3,7 +3,8 @@
 #include "driver.h"
 #include <WiFi.h>
 #include "esp_netif.h"
- 
+
+ // ESP-IDF (C code) includes for RainMaker, HTTP server, FreeRTOS, and BME680 sensor
 extern "C"{
   #include <string.h>
   #include <freertos/FreeRTOS.h>
@@ -24,22 +25,33 @@ extern "C"{
 
 
 }
+// -----------------------------------------------------------------
+// GLOBALS AND DEVICE/RAINMAKER SETUP
+// -----------------------------------------------------------------
 
 
-//for adding gas sensor rainmaker 
+// Tag for ESP logging
 static const char *TAG = "main"; //tag for esp error logging
+// RainMaker device and parameters for GAS sensor
 esp_rmaker_device_t *gas_sensor_device = NULL;
 esp_rmaker_param_t *gas_param = NULL;
-//for bme680 
+// RainMaker device and parameters for BME680 pressure sensor
 esp_rmaker_device_t *bme_sensor_device;
 esp_rmaker_param_t *pressure_param;  // declare temperature parameter
 
+// -----------------------------------------------------------------
+// HTTP SERVER: Handles requests from INDOOR ESP32 node
+// -----------------------------------------------------------------
 
-//comms between two esp
+/**
+ * @brief Handler for GET /data
+ * Returns CSV: "<pressure>,<gas_ppm>"
+ * Used by indoor ESP32 to fetch current values for comparison.
+ */
 esp_err_t data_get_handler(httpd_req_t *req)
 {
-    float pressure = app_get_current_pressure();
-    float gas_ppm = app_get_current_gas_ppm();  
+    float pressure = app_get_current_pressure(); // Read current pressure (hPa)
+    float gas_ppm = app_get_current_gas_ppm();   // Read current gas sensor value (ppm)
 
     char response[64];
     snprintf(response, sizeof(response), "%.2f,%.2f", pressure, gas_ppm);  // CSV style
@@ -49,13 +61,16 @@ esp_err_t data_get_handler(httpd_req_t *req)
 
     return ESP_OK;
 }
-
+/**
+ * @brief Starts HTTP server at port 8082, serving /data endpoint.
+ * Allows INDOOR unit to fetch latest values easily.
+ */
 void start_http_server() {
     httpd_config_t config = HTTPD_DEFAULT_CONFIG();
-    config.server_port = 8082;    // cannot put 8080 cus esp running other functions on it   
-    config.stack_size = 8192;  // Increase from default
+    config.server_port = 8082;     // Set non-default port to avoid conflicts
+    config.stack_size = 8192;  // More stack for heavier requests
     config.task_priority = 5;  // Adjust priority if needed
-    config.max_open_sockets = 4;//attempt to resolve memory issues 
+    config.max_open_sockets = 4; // Prevents memory exhaustion
     config.lru_purge_enable = true;
     config.recv_wait_timeout = 3;
     config.send_wait_timeout = 3;
@@ -64,7 +79,7 @@ void start_http_server() {
     if (httpd_start(&server, &config) == ESP_OK) {
         httpd_uri_t data_uri = {
             .uri      = "/data",
-            .method   = HTTP_GET,//get not post because send data from server 
+            .method   = HTTP_GET,  //GET not POST because send data from server 
             .handler  = data_get_handler,
             .user_ctx = NULL
         };
@@ -72,7 +87,9 @@ void start_http_server() {
     }
 }
 
-
+// -----------------------------------------------------------------
+// ARDUINO SETUP (Runs once on boot)
+// -----------------------------------------------------------------
 void setup() {
   Serial.begin(115200); //baud rate changed for esp32
   /* Initialize Application specific hardware drivers and
@@ -82,7 +99,7 @@ void setup() {
 
   app_driver_init();
 
-  /* Initialize NVS. */
+  // Initialize Non-volatile storage for WiFi & RainMaker
   esp_err_t err = nvs_flash_init();
   if (err == ESP_ERR_NVS_NO_FREE_PAGES || err == ESP_ERR_NVS_NEW_VERSION_FOUND) {
     ESP_ERROR_CHECK(nvs_flash_erase());
