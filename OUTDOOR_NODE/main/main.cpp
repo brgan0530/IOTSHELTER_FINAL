@@ -129,7 +129,7 @@ void setup() {
   gas_sensor_device = esp_rmaker_device_create("MQ135", NULL,NULL);
   bme_sensor_device = esp_rmaker_device_create("BME680", NULL,NULL);
   // Create custom parameter for temperature
-  gas_param = esp_rmaker_param_create("MQ 135 CO2/PPM", NULL, esp_rmaker_float(0), PROP_FLAG_READ); //time series data flag to enable plot graph
+  gas_param = esp_rmaker_param_create("MQ 135 CO2/PPM", NULL, esp_rmaker_float(0), PROP_FLAG_READ); //displays value on rainmaker
   pressure_param = esp_rmaker_param_create("BME 2 Pressure/hPa", NULL, esp_rmaker_float(0), PROP_FLAG_READ);
   // Add the parameter to the device
   esp_rmaker_device_add_param(gas_sensor_device, gas_param);
