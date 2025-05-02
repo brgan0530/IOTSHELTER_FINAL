@@ -216,7 +216,7 @@ void app_main()
     /* Create a device and add the relevant parameters to it */
     bme_sensor_device = esp_rmaker_device_create("BME Sensor", NULL,NULL);
     
-    // Create custom parameter for temperature
+    // Create custom parameters for indoor sensors
     temp_param = esp_rmaker_param_create("BME 1 Temp", NULL, esp_rmaker_float(app_get_current_temperature()), PROP_FLAG_READ | PROP_FLAG_TIME_SERIES); //time series data flag to enable plot graph
     pressure_param = esp_rmaker_param_create("BME 1 Pressure", NULL, esp_rmaker_float(app_get_current_pressure()), PROP_FLAG_READ | PROP_FLAG_TIME_SERIES);
     delta_p_param=esp_rmaker_param_create("BME 1 and 2 Delta Pressure", NULL, esp_rmaker_float(0), PROP_FLAG_READ | PROP_FLAG_TIME_SERIES);
