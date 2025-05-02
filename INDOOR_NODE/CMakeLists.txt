@@ -3,7 +3,7 @@
 cmake_minimum_required(VERSION 3.5)
 
 #change this to your own rainmaker path
-set(RMAKER_PATH C:/Users/X/esp-rainmaker)
+set(RMAKER_PATH C:/Users/hello/esp-rainmaker)
 
 # Add RainMaker components and other common application components
 set(EXTRA_COMPONENT_DIRS 
