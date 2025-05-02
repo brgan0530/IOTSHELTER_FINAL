@@ -21,7 +21,7 @@ This indoor ESP node connects to a BME680 sensor to retrieve pressure values and
 
 Extra: 
 Note that our MQ135 code does not include rzero code to calibrate sensor
-Below is the file directory of remaining files in the project folder. Note to set your RMAKER Path to the path where rainmaker was gitcloned
+Below is the file directory of remaining files in the project folder. Note to set your RMAKER Path to the path where rainmaker was gitcloned in cmakelists.txt top level (not the one in the main folder)
 
 ```
 ├── CMakeLists.txt
